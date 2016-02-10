@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.uniminuto.web.adm;
 
+import com.uniminuto.controlador.SysUsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -17,12 +20,29 @@ import javax.inject.Named;
  * @author Administrador
  */
 @SessionScoped
-@Named
-public class AdministracionJSFBean  implements Serializable{
-    
+@Named(value = "administracionJSFBean")
+public class AdministracionJSFBean implements Serializable {
+
     private TablaUsuario tablaUsuarioSel = new TablaUsuario();
     private List<TablaUsuario> lstTablaUsuarios = new ArrayList<>();
 
+    private void cargarUsuarios() {
+        lstTablaUsuarios = sysUsuarioFL.findAll().
+                stream().map(e -> new TablaUsuario(e)).
+                collect(Collectors.toList());
+    }
+
+    public void cargarTabla_AE() {
+        cargarUsuarios();
+
+    }
+    @EJB
+    SysUsuarioFacadeLocal sysUsuarioFL;
+
+//    @PostConstruct
+//    public void init() {
+//        cargarUsuarios();
+//    }
     /**
      * @return the tablaUsuarioSel
      */
@@ -50,5 +70,5 @@ public class AdministracionJSFBean  implements Serializable{
     public void setLstTablaUsuarios(List<TablaUsuario> lstTablaUsuarios) {
         this.lstTablaUsuarios = lstTablaUsuarios;
     }
-    
+
 }

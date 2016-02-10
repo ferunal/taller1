@@ -11,7 +11,8 @@
         <ui:composition template="/base/masterpage.xhtml">
 
             <ui:define name="top">
-                top
+                <p:commandButton value="cargar" 
+                                 actionListener="#{administracionJSFBean.cargarTabla_AE}" process="@this" update="@all"/>
             </ui:define>
 
             <ui:define name="left">
@@ -26,23 +27,23 @@
                         </f:facet>
                         <h:outputText value="#{item.sysUsuario.usrId}"/>
                     </p:column>
-                     <p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Nombres"/>
                         </f:facet>
-                         <h:outputText value="#{item.sysUsuario.usrNombre1} #{item.sysUsuario.usrNombre2}"/>
+                        <h:outputText value="#{item.sysUsuario.usrNombre1} #{item.sysUsuario.usrNombre2}"/>
                     </p:column>
-                     <p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Apellidos"/>
                         </f:facet>
-                         <h:outputText value="#{item.sysUsuario.usrApellido1} #{item.sysUsuario.usrApellido2}"/>
+                        <h:outputText value="#{item.sysUsuario.usrApellido1} #{item.sysUsuario.usrApellido2}"/>
                     </p:column>
-                     <p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Login"/>
                         </f:facet>
-                         <h:outputText value="#{item.sysUsuario.usrUsuario}"/>
+                        <h:outputText value="#{item.sysUsuario.usrUsuario}"/>
                     </p:column>
                 </p:dataTable>
             </ui:define>
